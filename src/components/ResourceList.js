@@ -20,13 +20,20 @@ const ResourceList = ({
           console.log('err', err);
         }
       })(resource);
+      return function cleanup() {
+        console.log("cleanup?")
+      }
     }, 
     [resource]
   )
 
 
   return (
-    <div>{resources.length}</div>
+    <ul>
+      { resources.map( record => (
+        <li key={record.id}>{record.title}</li>
+      ))}
+    </ul>
   )
 }
 

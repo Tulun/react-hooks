@@ -3,9 +3,7 @@ import axios from "axios";
 
 const url = "https://jsonplaceholder.typicode.com";
 
-const ResourceList = ({
-  resource
-}) => {
+function useResources(resource) {
   const [resources, setResources] = useState([]);
 
   useEffect( 
@@ -27,6 +25,13 @@ const ResourceList = ({
     [resource]
   )
 
+  return resources;
+}
+
+const ResourceList = ({
+  resource
+}) => {
+  const resources = useResources(resource);
 
   return (
     <ul>

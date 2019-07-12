@@ -1,32 +1,6 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
 
-const url = "https://jsonplaceholder.typicode.com";
-
-function useResources(resource) {
-  const [resources, setResources] = useState([]);
-
-  useEffect( 
-    () => {
-      (async (resource) => {
-        try {
-          const response = await axios.get(`${url}/${resource}`);
-          console.log('response', response);
-          setResources(response.data);
-        }
-        catch(err) {
-          console.log('err', err);
-        }
-      })(resource);
-      return function cleanup() {
-        console.log("cleanup?")
-      }
-    }, 
-    [resource]
-  )
-
-  return resources;
-}
+import useResources from "./useResources";
 
 const ResourceList = ({
   resource
